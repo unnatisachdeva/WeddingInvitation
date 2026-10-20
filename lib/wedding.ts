@@ -96,46 +96,30 @@ export const wedding = {
   events: weddingEvents,
 
   families: {
-    eyebrow: "With love & blessings from",
-    title: "Our Family",
-    list: [
-      {
-        name: "The Sachdevas",
-        members: [
-          {
-            role: "Grandparents",
-            names: "Smt. Santosh & Sh. Om Prakash Sachdeva",
-          },
-          {
-            role: "Parents",
-            names: "Mrs. Sonia & Mr. Brajesh Sachdeva",
-          },
-          {
-            role: "Sister",
-            names: "Unnati Sachdeva",
-          },
-        ],
-      },
-      // {
-      //   name: "The Punjanis",
-      //   members: [
-      //     {
-      //       role: "Grandparents",
-      //       names: "Late Smt. Raj Rani & Late Sh. Jay Dyal Punjani",
-      //     },
-      //     {
-      //       role: "Parents",
-      //       names: "Mrs. Suman & Mr. Naresh Punjani",
-      //     },
-      //     {
-      //       role: "Brother",
-      //       names: "Puneet Punjani",
-      //     },
-      //   ],
-      // },
-    ],
-    note: "Awaiting the presence of our beloved family and friends",
-  },
+  eyebrow: "With love & blessings from",
+  title: "Our Family",
+  list: [
+    {
+      name: "The Punjani Family",
+      members: [
+        {
+          role: "In Loving Memory",
+          names:
+            "In loving memory of our beloved grandparents, whose blessings, values, and love will forever remain a part of this family's journey.",
+        },
+        {
+          role: "Grandparents",
+          names: "Smt. Raj Rani & Sh. Jay Dyal Punjani",
+        },  
+        {
+          role: "With Love and Blessings from Her Brothers",
+          names: "Puneet & Harivansh Punjani",
+        },
+      ],
+    },
+  ],
+  note: "Awaiting the presence of our beloved family and friends",
+},
 
   venue: {
     name: "Patram Haveli",

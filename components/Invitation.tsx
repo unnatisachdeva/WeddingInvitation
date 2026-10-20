@@ -34,12 +34,12 @@ export function Invitation() {
       ॐ
     </p>
 
-    <p
+    {/* <p
       {...reveal("fade", 100)}
       className="relative mt-5 font-deva text-xl text-gold-600"
     >
       सादर आमंत्रण
-    </p>
+    </p> */}
 
     <h2
       id="invitation-title"
@@ -65,15 +65,15 @@ export function Invitation() {
     {/* Groom */}
     <div {...reveal("up", 400)} className="relative mt-9">
       <h3 className="font-script text-5xl leading-tight text-maroon-700 sm:text-6xl">
-        {couple.partnerOne}
+        {couple.partnerTwo}
       </h3>
 
       <p className="mt-3 text-sm tracking-wide text-brown-500">
-        Son of
+        Daughter of
       </p>
 
       <p className="mt-2 font-display text-base text-brown-700 sm:text-lg">
-        Mrs. Sonia &amp; Mr. Brajesh Sachdeva
+        Mrs. Suman &amp; Mr. Naresh Punjani
       </p>
     </div>
 
@@ -92,15 +92,15 @@ export function Invitation() {
     {/* Bride */}
     <div {...reveal("up", 500)} className="relative">
       <h3 className="font-script text-5xl leading-tight text-maroon-700 sm:text-6xl">
-        {couple.partnerTwo}
+        {couple.partnerOne}
       </h3>
 
       <p className="mt-3 text-sm tracking-wide text-brown-500">
-        Daughter of
+        Son of
       </p>
 
       <p className="mt-2 font-display text-base text-brown-700 sm:text-lg">
-        Mrs. Suman &amp; Mr. Naresh Punjani
+        Mrs. Sonia &amp; Mr. Brajesh Sachdeva
       </p>
     </div>
 

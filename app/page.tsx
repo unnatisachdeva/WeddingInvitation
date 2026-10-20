@@ -1,13 +1,14 @@
 import { Celebrations } from "@/components/Celebrations";
-import { Closing } from "@/components/Closing";
+
 import { EnvelopeGate } from "@/components/EnvelopeGate";
-import { Families } from "@/components/Families";
+// import { Families } from "@/components/Families";
 import { Hero } from "@/components/Hero";
 import { Invitation } from "@/components/Invitation";
 import { RevealObserver } from "@/components/RevealObserver";
 import { SaveTheDate } from "@/components/SaveTheDate";
 import MusicPlayer from "@/components/MusicPlayer";
 import { Venue } from "@/components/Venue";
+import FamilyTribute from "@/components/FamilyTribute";
 
 export default function Home() {
   return (
@@ -21,9 +22,11 @@ export default function Home() {
         
         <Celebrations />
         <Venue />
-        <Families />
+
+        <FamilyTribute />
       </main>
-      <Closing />
+      
+     
       <RevealObserver />
     </>
   );
