@@ -1,35 +1,42 @@
+
 @import "tailwindcss";
 
 /* ------------------------------------------------------------------ */
-/*  Design tokens                                                      */
+/* Design tokens — Royal Navy, Champagne Beige & Gold                  */
 /* ------------------------------------------------------------------ */
 
 @theme {
-  --color-maroon-950: #2a070e;
-  --color-maroon-900: #3b0a14;
-  --color-maroon-800: #4f101c;
-  --color-maroon-700: #631626;
-  --color-maroon-600: #7a2233;
+  /* Royal navy palette */
+  --color-maroon-950: #0B1428;
+  --color-maroon-900: #101F3D;
+  --color-maroon-800: #172A49;
+  --color-maroon-700: #1C3155;
+  --color-maroon-600: #29436A;
 
-  --color-ivory: #fbf6ec;
-  --color-cream: #f5ecdc;
-  --color-beige: #ead9bd;
-  --color-sand: #d8c09b;
+  /* Ivory and beige palette */
+  --color-ivory: #F8F1E5;
+  --color-cream: #F5EBDD;
+  --color-beige: #E5D2B2;
+  --color-sand: #D4BC96;
 
-  --color-gold-300: #e3cc9a;
-  --color-gold-400: #cfb07a;
-  --color-gold-500: #b8945a;
-  --color-gold-600: #9a7742;
-  --color-gold-700: #7a5c30;
+  /* Champagne and antique gold */
+  --color-gold-300: #F0DDAA;
+  --color-gold-400: #DCC17F;
+  --color-gold-500: #D6B46A;
+  --color-gold-600: #A98443;
+  --color-gold-700: #80612F;
 
-  --color-brown-900: #24160f;
-  --color-brown-800: #33211a;
-  --color-brown-700: #4a3226;
-  --color-brown-500: #7a6252;
+  /* Neutral navy tones */
+  --color-brown-900: #101A2D;
+  --color-brown-800: #1B2940;
+  --color-brown-700: #344258;
+  --color-brown-500: #68758A;
 
-  --color-haldi: #c9962b;
-  --color-haldi-soft: #f6e6bf;
+  /* Preserve Haldi event colours */
+  --color-haldi: #C9962B;
+  --color-haldi-soft: #F6E6BF;
 
+  /* Existing typography */
   --font-display: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
   --font-caps: var(--font-cinzel), "Cinzel", Georgia, serif;
   --font-sans: var(--font-jost), "Jost", ui-sans-serif, system-ui, sans-serif;
@@ -39,9 +46,16 @@
   --ease-luxe: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+/* ------------------------------------------------------------------ */
+/* Global settings                                                     */
+/* ------------------------------------------------------------------ */
+
 :root {
   color-scheme: light;
-  --jaali: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cg fill='none' stroke='%23cfb07a' stroke-width='0.8'%3E%3Ccircle cx='0' cy='0' r='28'/%3E%3Ccircle cx='56' cy='0' r='28'/%3E%3Ccircle cx='0' cy='56' r='28'/%3E%3Ccircle cx='56' cy='56' r='28'/%3E%3Ccircle cx='28' cy='28' r='28'/%3E%3C/g%3E%3Ccircle cx='28' cy='28' r='1.6' fill='%23cfb07a'/%3E%3C/svg%3E");
+
+  /* Traditional geometric jaali pattern in champagne gold */
+  --jaali: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cg fill='none' stroke='%23d6b46a' stroke-width='0.8'%3E%3Ccircle cx='0' cy='0' r='28'/%3E%3Ccircle cx='56' cy='0' r='28'/%3E%3Ccircle cx='0' cy='56' r='28'/%3E%3Ccircle cx='56' cy='56' r='28'/%3E%3Ccircle cx='28' cy='28' r='28'/%3E%3C/g%3E%3Ccircle cx='28' cy='28' r='1.6' fill='%23d6b46a'/%3E%3C/svg%3E");
+
   --paper: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.35 0 0 0 0 0.25 0 0 0 0 0.15 0 0 0 0.09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
@@ -51,7 +65,7 @@ html {
   background: var(--color-maroon-950);
 }
 
-/* Transparent so the fixed SiteBackground shows through every section. */
+/* Transparent so the fixed SiteBackground shows through every section */
 body {
   background: transparent;
   color: var(--color-ivory);
@@ -69,7 +83,7 @@ body {
 }
 
 /* ------------------------------------------------------------------ */
-/*  Textures & utilities                                               */
+/* Textures & utilities                                                */
 /* ------------------------------------------------------------------ */
 
 @utility bg-jaali {
@@ -82,7 +96,6 @@ body {
   background-image: var(--paper);
 }
 
-/* Handmade cotton paper: lit fractal noise, tiled seamlessly. */
 @utility bg-cotton {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3CfeDiffuseLighting lighting-color='%23ffffff' surfaceScale='1.7'%3E%3CfeDistantLight azimuth='45' elevation='58'/%3E%3C/feDiffuseLighting%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E");
   background-size: 320px 320px;
@@ -94,13 +107,21 @@ body {
 }
 
 .dust {
-  background: radial-gradient(circle, #f3dfae 0%, #cfb07a 60%, transparent 100%);
-  box-shadow: 0 0 6px 1px rgba(227, 204, 154, 0.55);
+  background: radial-gradient(circle, #F3DFAE 0%, #D6B46A 60%, transparent 100%);
+  box-shadow: 0 0 6px 1px rgba(214, 180, 106, 0.55);
   opacity: 0;
 }
 
+/* Antique gold text */
 @utility text-antique-foil {
-  background: linear-gradient(100deg, #7a5c30 0%, #a8844c 30%, #8c6a35 55%, #b8945a 78%, #7a5c30 100%);
+  background: linear-gradient(
+    100deg,
+    #80612F 0%,
+    #D6B46A 30%,
+    #A98443 55%,
+    #E5CD8D 78%,
+    #80612F 100%
+  );
   background-size: 220% 100%;
   -webkit-background-clip: text;
   background-clip: text;
@@ -108,6 +129,7 @@ body {
   animation: foil 10s ease-in-out infinite alternate;
 }
 
+/* Champagne gold text */
 @utility text-gold-foil {
   background: linear-gradient(
     100deg,
@@ -131,6 +153,14 @@ body {
   letter-spacing: 0.38em;
   text-transform: uppercase;
 }
+
+/* ------------------------------------------------------------------ */
+/* Keep the rest of your existing CSS below this point unchanged       */
+/* ------------------------------------------------------------------ */
+
+/* Keep all your existing @keyframes, animations, scroll reveals, */
+/* opening gate, hero styles, and reduced-motion settings. */
+
 
 /* ------------------------------------------------------------------ */
 /*  Keyframes — slow, deliberate motion                                */

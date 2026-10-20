@@ -1,146 +1,305 @@
+
+"use client";
+
+import { useEffect, useRef, useState } from "react";
 import { wedding } from "@/lib/wedding";
 import { reveal } from "@/lib/reveal";
 import { Countdown } from "./Countdown";
-import { DustBackdrop } from "./DustBackdrop";
 import { ScallopEdge } from "./ScallopEdge";
 import { Divider, Lotus } from "./ornaments";
 
-const WEEKDAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+function ScratchRevealCard({ date }: { date: string }) {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const isDrawing = useRef(false);
+  const [isRevealed, setIsRevealed] = useState(false);
+  const [hasScratched, setHasScratched] = useState(false);
 
-function parseISODate(iso: string) {
-  const [y, m, d] = iso.split("-").map(Number);
-  return { year: y, month: m - 1, day: d };
-}
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
 
-/** Builds the month grid for the wedding month (leading blanks + days). */
-function monthGrid(year: number, month: number) {
-  const firstWeekday = new Date(Date.UTC(year, month, 1)).getUTCDay();
-  const daysInMonth = new Date(Date.UTC(year, month + 1, 0)).getUTCDate();
-  return [
-    ...Array.from({ length: firstWeekday }, () => null),
-    ...Array.from({ length: daysInMonth }, (_, i) => i + 1),
-  ];
-}
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
 
-function Heart({ className }: { className?: string }) {
+    function drawSurface() {
+      if (!canvas || !ctx) return;
+
+      const rect = canvas.getBoundingClientRect();
+      if (!rect.width || !rect.height) return;
+
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      const w = rect.width;
+      const h = rect.height;
+
+      // Champagne gold scratch surface
+      const gradient = ctx.createLinearGradient(0, 0, w, h);
+      gradient.addColorStop(0, "#D8B86B");
+      gradient.addColorStop(0.22, "#F7E5A8");
+      gradient.addColorStop(0.48, "#DAB85E");
+      gradient.addColorStop(0.68, "#F5DEA0");
+      gradient.addColorStop(0.86, "#C69B37");
+      gradient.addColorStop(1, "#F0D78A");
+
+      ctx.globalCompositeOperation = "source-over";
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, w, h);
+
+      // Fine diagonal shimmer
+      ctx.save();
+      ctx.globalAlpha = 0.16;
+      ctx.strokeStyle = "#FFF8D8";
+      ctx.lineWidth = 1;
+
+      for (let x = -h; x < w + h; x += 12) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x + h, h);
+        ctx.stroke();
+      }
+      ctx.restore();
+
+      // Fine gold speckles
+      let seed = 21;
+      const random = () => {
+        seed = (seed * 16807) % 2147483647;
+        return (seed - 1) / 2147483646;
+      };
+
+      for (let i = 0; i < 220; i++) {
+        ctx.beginPath();
+        ctx.arc(random() * w, random() * h, random() * 1.5 + 0.3, 0, Math.PI * 2);
+        ctx.fillStyle = random() > 0.5
+          ? "rgba(111,75,22,0.25)"
+          : "rgba(255,250,220,0.65)";
+        ctx.fill();
+      }
+
+      // Inner ornamental frame
+      ctx.strokeStyle = "rgba(112,78,27,0.45)";
+      ctx.lineWidth = 1;
+      ctx.strokeRect(12, 12, w - 24, h - 24);
+      ctx.strokeStyle = "rgba(255,246,203,0.75)";
+      ctx.strokeRect(17, 17, w - 34, h - 34);
+
+      // Corner ornaments
+      const corners = [
+        [24, 24],
+        [w - 24, 24],
+        [24, h - 24],
+        [w - 24, h - 24],
+      ];
+
+      corners.forEach(([x, y]) => {
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.rotate(Math.PI / 4);
+        ctx.fillStyle = "rgba(112,78,27,0.55)";
+        ctx.fillRect(-4, -4, 8, 8);
+        ctx.restore();
+      });
+
+      // Scratch instructions
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillStyle = "#4C3515";
+
+      const titleSize = Math.min(27, Math.max(17, w * 0.052));
+      ctx.font = `600 ${titleSize}px Georgia, serif`;
+      ctx.letterSpacing = "0.16em";
+      ctx.fillText("✦  SCRATCH HERE  ✦", w / 2, h / 2 - 7);
+
+      ctx.font = `italic ${Math.min(17, Math.max(12, w * 0.031))}px Georgia, serif`;
+      ctx.letterSpacing = "0.12em";
+      ctx.fillStyle = "rgba(76,53,21,0.85)";
+      ctx.fillText("To Reveal The Special Day", w / 2, h / 2 + 28);
+
+      ctx.globalCompositeOperation = "source-over";
+    }
+
+    drawSurface();
+
+    const observer = new ResizeObserver(() => {
+      if (!isDrawing.current) drawSurface();
+    });
+
+    observer.observe(canvas);
+
+    return () => observer.disconnect();
+  }, []);
+
+  function scratch(e: React.PointerEvent<HTMLCanvasElement>) {
+    const canvas = canvasRef.current;
+    const ctx = canvas?.getContext("2d");
+    if (!canvas || !ctx || isRevealed) return;
+
+    const rect = canvas.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    ctx.globalCompositeOperation = "destination-out";
+    ctx.beginPath();
+    ctx.arc(x, y, 23, 0, Math.PI * 2);
+    ctx.fill();
+
+    setHasScratched(true);
+  }
+
+  function checkProgress() {
+    const canvas = canvasRef.current;
+    const ctx = canvas?.getContext("2d");
+    if (!canvas || !ctx || isRevealed) return;
+
+    try {
+      const { width, height } = canvas;
+      const pixels = ctx.getImageData(0, 0, width, height).data;
+      let transparent = 0;
+      let total = 0;
+
+      // Sample pixels to estimate how much has been scratched
+      const step = 16;
+
+      for (let y = 0; y < height; y += step) {
+        for (let x = 0; x < width; x += step) {
+          const alpha = pixels[(y * width + x) * 4 + 3];
+          if (alpha < 50) transparent++;
+          total++;
+        }
+      }
+
+      if (total > 0 && transparent / total > 0.42) {
+        setIsRevealed(true);
+      }
+    } catch {
+      // Keep manual scratching available if pixel sampling is unavailable.
+    }
+  }
+
+  function handlePointerDown(e: React.PointerEvent<HTMLCanvasElement>) {
+    if (isRevealed) return;
+    e.preventDefault();
+    isDrawing.current = true;
+    e.currentTarget.setPointerCapture(e.pointerId);
+    scratch(e);
+  }
+
+  function handlePointerMove(e: React.PointerEvent<HTMLCanvasElement>) {
+    if (!isDrawing.current || isRevealed) return;
+    e.preventDefault();
+    scratch(e);
+  }
+
+  function handlePointerUp() {
+    isDrawing.current = false;
+    checkProgress();
+  }
+
   return (
-    <svg viewBox="0 0 32 29" className={className} aria-hidden="true">
-      <path
-        d="M16 28.5S1 19.4 1 9.3C1 4.6 4.6 1 9 1c3 0 5.6 1.7 7 4.2C17.4 2.7 20 1 23 1c4.4 0 8 3.6 8 8.3 0 10.1-15 19.2-15 19.2Z"
-        fill="currentColor"
-      />
-    </svg>
+    <div
+      className="relative mx-auto mt-10 w-full max-w-[35rem] overflow-hidden rounded-[32px] border border-[#D6B46A]/70 bg-[#F5EBDD] shadow-[0_24px_70px_rgba(0,0,0,0.4)]"
+      {...reveal("up", 150)}
+    >
+      {/* Date underneath the scratch surface */}
+      <div className="relative flex min-h-[250px] flex-col items-center justify-center overflow-hidden bg-[radial-gradient(ellipse_at_center,#FFF9ED_0%,#F5EBDD_65%,#E5D2B2_100%)] px-5 py-10 text-center sm:min-h-[310px]">
+        <div className="pointer-events-none absolute inset-3 rounded-[24px] border border-[#B8945A]/50" />
+
+        <p className="eyebrow text-[#80612F]">
+          A Day To Remember
+        </p>
+
+        <p className="mt-5 font-display text-3xl italic text-[#80612F] sm:text-4xl">
+          Save the Date
+        </p>
+
+        <p className="mt-4 font-caps text-3xl font-semibold tracking-[0.1em] text-[#101F3D] sm:text-5xl">
+          {date}
+        </p>
+
+        <div className="mt-4 h-px w-28 bg-[#D6B46A]" />
+
+        <p className="mt-4 font-display text-lg italic text-[#80612F]">
+          A beautiful beginning awaits
+        </p>
+      </div>
+
+      {/* Scratchable gold overlay */}
+      {!isRevealed && (
+        <canvas
+          ref={canvasRef}
+          aria-label="Scratch this gold card to reveal the wedding date"
+          role="button"
+          tabIndex={0}
+          onPointerDown={handlePointerDown}
+          onPointerMove={handlePointerMove}
+          onPointerUp={handlePointerUp}
+          onPointerCancel={handlePointerUp}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              setIsRevealed(true);
+            }
+          }}
+          className="absolute inset-0 h-full w-full cursor-crosshair touch-none"
+        />
+      )}
+
+      {/* {isRevealed && (
+        <div className="absolute bottom-3 right-3 rounded-full bg-[#101F3D] px-3 py-1.5 font-sans text-xs tracking-wider text-[#F5EBDD]">
+          Date revealed ✨
+        </div>
+      )} */}
+
+      {!isRevealed && hasScratched && (
+        <button
+          type="button"
+          onClick={() => setIsRevealed(true)}
+          className="absolute bottom-3 right-3 rounded-full border border-[#80612F]/60 bg-[#F5EBDD]/95 px-3 py-1.5 font-sans text-xs text-[#101F3D] shadow-sm"
+        >
+          Reveal date
+        </button>
+      )}
+    </div>
   );
 }
+
 
 export function SaveTheDate() {
-  const { date, events } = wedding;
-  const { year, month, day: weddingDay } = parseISODate(date.isoDate);
-  const monthName = new Date(Date.UTC(year, month, 1)).toLocaleString("en-GB", { month: "long", timeZone: "UTC" });
-
-  const celebrationDays = new Set(
-    events
-      .map((e) => parseISODate(e.isoDate))
-      .filter((d) => d.year === year && d.month === month && d.day !== weddingDay)
-      .map((d) => d.day),
-  );
-
-  const cells = monthGrid(year, month);
+  const { date } = wedding;
 
   return (
-    <section id="save-the-date" aria-labelledby="save-the-date-title" className="relative isolate overflow-hidden px-5 py-24 sm:py-32">
-      <DustBackdrop tone="maroon" />
-      <ScallopEdge color="var(--color-ivory)" />
-      <p {...reveal("fade")} className="eyebrow text-center text-gold-400">
+    <section
+      id="save-the-date"
+      aria-labelledby="save-the-date-title"
+      className="relative isolate overflow-hidden bg-[#0B1428] px-5 py-24 sm:py-32"
+    >
+      {/* Navy background with a subtle royal-blue glow */}
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,#1C3155_0%,#101F3D_42%,#0B1428_100%)]" />
+
+      {/* Gold decorative accents */}
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-jaali opacity-[0.12]" />
+
+      <ScallopEdge color="#F5EBDD" />
+
+      <p
+        {...reveal("fade")}
+        className="eyebrow text-center text-[#D6B46A]"
+      >
         Save the date
       </p>
 
-      {/* calendar card */}
-      <div
-        {...reveal("up", 150)}
-        className="relative mx-auto mt-10 w-full max-w-[24rem] overflow-hidden rounded-[22px] border border-gold-500/35 bg-[linear-gradient(135deg,#fdfaf6_0%,#f7efe3_50%,#f1e3cc_100%)] px-5 pt-8 pb-7 text-maroon-900 shadow-[0_24px_60px_-12px_rgba(0,0,0,0.55),inset_0_0_24px_rgba(201,161,74,0.12)] sm:px-7"
+      <h2
+        id="save-the-date-title"
+        {...reveal("up", 100)}
+        className="mt-8 text-center font-display text-3xl italic text-[#F5EBDD] sm:text-4xl"
       >
-        <div className="bg-grain pointer-events-none absolute inset-0 opacity-25 mix-blend-multiply" />
-        <div className="pointer-events-none absolute inset-2 rounded-[16px] border border-gold-500/20" />
+        A little surprise awaits
+      </h2>
 
-        <header className="relative text-center">
-          <p className="eyebrow text-[0.6rem] text-maroon-600/70">Our special date</p>
-          <h2
-            id="save-the-date-title"
-            className="mt-3 font-caps text-[2.35rem] leading-none font-medium tracking-[0.14em] text-maroon-800 uppercase"
-          >
-            {monthName}
-          </h2>
-          <p className="mt-1.5 font-display text-xl tracking-[0.2em] text-gold-600 italic">{year}</p>
-        </header>
-
-        <div className="relative mt-7 grid grid-cols-7 text-center">
-          {WEEKDAYS.map((w) => (
-            <span key={w} className="pb-3 font-sans text-[0.6rem] font-medium tracking-[0.12em] text-maroon-600/60 uppercase">
-              {w}
-            </span>
-          ))}
-
-          {cells.map((d, i) => {
-            if (d === null) return <span key={`blank-${i}`} aria-hidden="true" />;
-            const isWedding = d === weddingDay;
-            const isCelebration = celebrationDays.has(d);
-            return (
-              <span
-                key={d}
-                {...reveal("fade", 200 + i * 22)}
-                className="relative flex h-11 items-center justify-center font-display text-[1.2rem]"
-              >
-                {isWedding ? (
-                  <>
-                    <Heart className="absolute h-9 w-9 text-maroon-700 drop-shadow-[0_4px_8px_rgba(99,22,38,0.45)] [animation:heartbeat_2.6s_var(--ease-luxe)_infinite]" />
-                    <span className="relative font-semibold text-ivory">{d}</span>
-                    <span className="sr-only"> November — the wedding</span>
-                  </>
-                ) : (
-                  <>
-                    <span className={isCelebration ? "font-semibold text-maroon-700" : "text-maroon-900/80"}>{d}</span>
-                    {isCelebration && (
-                      <span aria-hidden="true" className="absolute bottom-1 h-1 w-1 rounded-full bg-gold-500" />
-                    )}
-                  </>
-                )}
-              </span>
-            );
-          })}
-        </div>
-
-        <div className="relative mt-5 flex items-center justify-center gap-6 border-t border-gold-500/25 pt-4 font-sans text-[0.6rem] tracking-[0.22em] text-maroon-700/70 uppercase">
-          <span className="flex items-center gap-2">
-            <span className="h-1 w-1 rounded-full bg-gold-500" /> Celebrations
-          </span>
-          <span className="flex items-center gap-2">
-            <Heart className="h-2.5 w-2.5 text-maroon-700" /> The Wedding
-          </span>
-        </div>
-      </div>
-
-      {/* the day itself */}
-      <div className="mt-14 text-center">
-        <p {...reveal("fade", 100)} className="eyebrow text-ivory/80">
-          The Wedding Celebration
-        </p>
-        <p {...reveal("up", 200)} className="text-gold-foil mt-5 font-caps text-[clamp(1.9rem,8vw,2.8rem)] leading-tight tracking-[0.12em]">
-          {date.display.toUpperCase()}
-        </p>
-        <p {...reveal("up", 300)} className="mt-3 font-display text-2xl text-ivory/85 italic">
-          {date.weekday} — the beginning of a beautiful new chapter 
-        </p>
-        <div {...reveal("scale", 400)}>
-          <Divider className="mx-auto mt-8 w-40 text-gold-400" />
-        </div>
-
-        <div {...reveal("up", 300)} className="mt-14">
-          <Lotus className="mx-auto w-12 text-gold-400" />
-          <p className="eyebrow mt-4 mb-8 text-gold-400">Counting down to the big day</p>
-          <Countdown />
-        </div>
-      </div>
+      {/* Scratch card only — no separate date, weekday or countdown */}
+      <ScratchRevealCard date={date.display} />
     </section>
   );
 }

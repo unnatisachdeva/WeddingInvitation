@@ -7,6 +7,7 @@ import { Invitation } from "@/components/Invitation";
 import { RevealObserver } from "@/components/RevealObserver";
 import { SaveTheDate } from "@/components/SaveTheDate";
 import MusicPlayer from "@/components/MusicPlayer";
+import { Venue } from "@/components/Venue";
 
 export default function Home() {
   return (
@@ -15,9 +16,11 @@ export default function Home() {
       <MusicPlayer />
       <main>
         <Hero />
-        <Invitation />
         <SaveTheDate />
+        <Invitation />
+        
         <Celebrations />
+        <Venue />
         <Families />
       </main>
       <Closing />
