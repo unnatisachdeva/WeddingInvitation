@@ -68,7 +68,7 @@ export function Venue() {
           {venue.locality}
         </p>
 
-        <p className="mx-auto mt-6 max-w-md font-display text-lg italic leading-relaxed text-[#46536A]">
+        <p className="mx-auto mt-6 max-w-md font-display text-lg italic leading-relaxed text-[#174a7e]">
           We look forward to welcoming you to share
           these beautiful moments with us.
         </p>
@@ -93,7 +93,7 @@ export function Venue() {
             />
           </div>
 
-          <span className="inline-flex items-center gap-2 font-sans text-xs font-medium uppercase tracking-[0.18em] text-[#8B682E] transition-colors group-hover:text-[#C04080]">
+          <span className="inline-flex items-center gap-2 font-sans text-xs font-medium uppercase tracking-[0.18em] text-[#fbfaf6] transition-colors group-hover:text-[#C04080]">
             <svg
               viewBox="0 0 24 24"
               className="h-4 w-4"
