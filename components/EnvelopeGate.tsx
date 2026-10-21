@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState } from "react";
@@ -11,7 +10,7 @@ const UNMOUNT_AT = 2900;
 
 function CoverArt() {
   return (
-    <div className="absolute inset-0 overflow-hidden bg-[#F8F0E8] text-[#172B4D]">
+    <div className="absolute inset-0 overflow-hidden bg-[#F8F0E8] text-[#7A1F4D]">
       {/* Handmade ivory paper */}
       <div className="bg-cotton absolute inset-0 opacity-55 mix-blend-multiply" />
 
@@ -30,11 +29,11 @@ function CoverArt() {
         className="absolute -left-[15%] -top-[8%] h-[36%] w-[115%] rotate-[-5deg] opacity-95"
         style={{
           background: `
-            radial-gradient(ellipse at 18% 22%, #172B4D 0%, transparent 43%),
-            radial-gradient(ellipse at 42% 28%, #243F68 0%, transparent 42%),
-            radial-gradient(ellipse at 67% 18%, #456487 0%, transparent 38%),
-            radial-gradient(ellipse at 83% 45%, #9AA8B5 0%, transparent 35%),
-            radial-gradient(ellipse at 35% 65%, #172B4D 0%, transparent 45%)
+            radial-gradient(ellipse at 18% 22%, #7A1F4D 0%, transparent 43%),
+            radial-gradient(ellipse at 42% 28%, #A0336A 0%, transparent 42%),
+            radial-gradient(ellipse at 67% 18%, #C9659A 0%, transparent 38%),
+            radial-gradient(ellipse at 83% 45%, #E8B4CE 0%, transparent 35%),
+            radial-gradient(ellipse at 35% 65%, #7A1F4D 0%, transparent 45%)
           `,
           filter: "blur(9px)",
           clipPath:
@@ -42,13 +41,13 @@ function CoverArt() {
         }}
       />
 
-      {/* Deep blue pigment pools */}
+      {/* Deep pink pigment pools */}
       <div
         aria-hidden="true"
         className="absolute -left-[8%] top-[7%] h-[17%] w-[68%] rotate-[-9deg] opacity-75"
         style={{
           background:
-            "linear-gradient(165deg, #101E38 0%, #203B63 35%, #344F76 65%, transparent 100%)",
+            "linear-gradient(165deg, #5A1238 0%, #962A5E 35%, #B84A80 65%, transparent 100%)",
           clipPath:
             "polygon(0 0,100% 0,94% 22%,85% 40%,75% 32%,66% 55%,53% 48%,43% 72%,30% 63%,18% 86%,0 70%)",
           filter: "blur(4px)",
@@ -63,28 +62,28 @@ function CoverArt() {
         className="pointer-events-none absolute -left-[5%] top-0 h-[34%] w-[110%]"
       >
         <defs>
-          <linearGradient id="bluePaint" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="#101E38" />
-            <stop offset="48%" stopColor="#29486F" />
-            <stop offset="100%" stopColor="#8295AA" />
+          <linearGradient id="pinkPaint" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stopColor="#5A1238" />
+            <stop offset="48%" stopColor="#B03A72" />
+            <stop offset="100%" stopColor="#DE97BC" />
           </linearGradient>
 
           <linearGradient id="palePaint" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stopColor="#A8B4BF" stopOpacity="0.05" />
-            <stop offset="50%" stopColor="#8295AA" stopOpacity="0.65" />
-            <stop offset="100%" stopColor="#A8B4BF" stopOpacity="0" />
+            <stop offset="0%" stopColor="#EFC3D8" stopOpacity="0.05" />
+            <stop offset="50%" stopColor="#DE97BC" stopOpacity="0.65" />
+            <stop offset="100%" stopColor="#EFC3D8" stopOpacity="0" />
           </linearGradient>
         </defs>
 
         <path
           d="M-20 20 Q90 5 180 35 T355 28 T620 5 L620 95 Q535 78 470 106 T325 110 T170 128 T-20 95Z"
-          fill="url(#bluePaint)"
+          fill="url(#pinkPaint)"
           opacity="0.55"
         />
 
         <path
           d="M-15 110 Q90 80 160 118 T295 105 T440 87 T620 75 L620 120 Q520 114 445 138 T290 150 T140 157 T-15 145Z"
-          fill="#172B4D"
+          fill="#7A1F4D"
           opacity="0.52"
         />
 
@@ -99,7 +98,7 @@ function CoverArt() {
         <path
           d="M15 178 Q105 155 180 175 T345 164 T590 151"
           fill="none"
-          stroke="#A8B4BF"
+          stroke="#EFC3D8"
           strokeWidth="3"
           strokeDasharray="28 9 14 17 35 12"
           opacity="0.5"
@@ -108,7 +107,7 @@ function CoverArt() {
         <path
           d="M20 205 Q110 180 190 197 T370 184 T600 177"
           fill="none"
-          stroke="#344F76"
+          stroke="#B84A80"
           strokeWidth="7"
           strokeDasharray="70 12 34 18 20 10"
           opacity="0.65"
@@ -139,9 +138,9 @@ function CoverArt() {
         className="absolute -bottom-[5%] -right-[12%] h-[24%] w-[92%] rotate-[-7deg]"
         style={{
           background: `
-            radial-gradient(ellipse at 80% 65%, #172B4D 0%, transparent 52%),
-            radial-gradient(ellipse at 56% 80%, #344F76 0%, transparent 48%),
-            radial-gradient(ellipse at 30% 95%, #9AA8B5 0%, transparent 42%)
+            radial-gradient(ellipse at 80% 65%, #7A1F4D 0%, transparent 52%),
+            radial-gradient(ellipse at 56% 80%, #B84A80 0%, transparent 48%),
+            radial-gradient(ellipse at 30% 95%, #E8B4CE 0%, transparent 42%)
           `,
           filter: "blur(7px)",
           clipPath:
@@ -169,23 +168,23 @@ function CoverArt() {
 
       {/* Main invitation typography */}
       <div className="absolute inset-x-0 top-[31%] px-5 text-center sm:top-[29%]">
-        <p className="font-display text-[clamp(1rem,4.5vw,1.5rem)] italic tracking-wide text-[#29354A]">
+        <p className="font-display text-[clamp(1rem,4.5vw,1.5rem)] italic tracking-wide text-[#6E2F4E]">
           Wedding Invitation From
         </p>
 
-        <p className="mt-3 font-caps text-[clamp(0.8rem,3.5vw,1.05rem)] uppercase tracking-[0.3em] text-[#172B4D]">
+        <p className="mt-3 font-caps text-[clamp(0.8rem,3.5vw,1.05rem)] uppercase tracking-[0.3em] text-[#7A1F4D]">
           Punjani Family
         </p>
 
         {/* Initials A | V */}
         <div className="mx-auto mt-10 flex items-center justify-center gap-5 sm:mt-12">
-          <span className="font-display text-[clamp(5rem,23vw,9rem)] font-light leading-none text-[#233D60] [text-shadow:1px_2px_0_rgba(177,138,69,0.4)]">
+          <span className="font-display text-[clamp(5rem,23vw,9rem)] font-light leading-none text-[#8E2A5A] [text-shadow:1px_2px_0_rgba(177,138,69,0.4)]">
             A
           </span>
 
           <span className="h-[clamp(4rem,18vw,7rem)] w-px bg-[#B18A45]" />
 
-          <span className="font-display text-[clamp(5rem,23vw,9rem)] font-light leading-none text-[#233D60] [text-shadow:1px_2px_0_rgba(177,138,69,0.4)]">
+          <span className="font-display text-[clamp(5rem,23vw,9rem)] font-light leading-none text-[#8E2A5A] [text-shadow:1px_2px_0_rgba(177,138,69,0.4)]">
             V
           </span>
         </div>
@@ -198,14 +197,14 @@ function CoverArt() {
           <span className="h-px flex-1 bg-current" />
         </div>
 
-        <p className="mt-5 font-display text-sm italic tracking-widest text-[#52627A] sm:text-base">
+        <p className="mt-5 font-display text-sm italic tracking-widest text-[#8A5A72] sm:text-base">
           With love &amp; blessings
         </p>
       </div>
 
       {/* Open invitation prompt */}
       <div className="gate-hint absolute inset-x-0 bottom-[7%] text-center">
-        <span className="inline-flex items-center gap-3 rounded-full border border-[#B18A45]/60 bg-[#F8F0E8]/85 px-6 py-3 font-caps text-xs uppercase tracking-[0.22em] text-[#172B4D] shadow-sm">
+        <span className="inline-flex items-center gap-3 rounded-full border border-[#B18A45]/60 bg-[#F8F0E8]/85 px-6 py-3 font-caps text-xs uppercase tracking-[0.22em] text-[#7A1F4D] shadow-sm">
           Open invitation
           <span aria-hidden="true">↗</span>
         </span>
