@@ -13,7 +13,7 @@ export function Closing() {
     <footer
       id="closing"
       aria-label="Closing note"
-      className="relative isolate overflow-hidden bg-[linear-gradient(180deg,#F7EEDB_0%,#F0DFBB_52%,#E6D0A1_100%)] px-5 py-20 text-center text-[#102344] sm:px-8 sm:py-28"
+      className="relative isolate overflow-hidden bg-[linear-gradient(180deg,#F7EEDB_0%,#F0DFBB_52%,#E6D0A1_100%)] px-5 py-20 text-center text-[#C04080] sm:px-8 sm:py-28"
     >
       {/* Parchment texture */}
       <div className="bg-grain pointer-events-none absolute inset-0 -z-10 opacity-40 mix-blend-multiply" />
@@ -80,7 +80,7 @@ export function Closing() {
           <Monogram
             className="relative mx-auto w-28 text-[0.95rem] sm:w-36"
             ringClassName="text-[#A47A2D]"
-            letterClassName="text-[#102344]"
+            letterClassName="text-[#C04080]"
           />
         </div>
 
@@ -113,7 +113,7 @@ export function Closing() {
 
           <p
             {...reveal("blur", 400)}
-            className="mt-5 font-script text-[clamp(3.3rem,12vw,6.5rem)] leading-[1.15] text-[#102344]"
+            className="mt-5 font-script text-[clamp(3.3rem,12vw,6.5rem)] leading-[1.15] text-[#C04080]"
           >
             Punjani Family
           </p>
@@ -127,7 +127,7 @@ export function Closing() {
         <div {...reveal("up", 500)}>
           <Divider className="mx-auto mt-9 w-44 text-[#A47A2D]" />
 
-          <p className="mt-7 font-display text-xl tracking-[0.25em] text-[#102344] sm:text-2xl sm:tracking-[0.4em]">
+          <p className="mt-7 font-display text-xl tracking-[0.25em] text-[#C04080] sm:text-2xl sm:tracking-[0.4em]">
             {date.numeric}
           </p>
 
@@ -137,7 +137,7 @@ export function Closing() {
             <span className="h-px w-8 bg-[#B18A45]/60" />
           </div>
 
-          <p className="eyebrow mt-6 text-[#102344]">
+          <p className="eyebrow mt-6 text-[#C04080]">
             {venue.name}
           </p>
 
@@ -149,7 +149,7 @@ export function Closing() {
             href={venue.mapsUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-4 inline-flex items-center gap-2 text-[0.65rem] uppercase tracking-[0.18em] text-[#8B682E] transition-colors hover:text-[#102344]"
+            className="mt-4 inline-flex items-center gap-2 text-[0.65rem] uppercase tracking-[0.18em] text-[#8B682E] transition-colors hover:text-[#C04080]"
           >
             <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden="true">
               <path d="M12 21s7-6.1 7-12a7 7 0 1 0-14 0c0 5.9 7 12 7 12Z" />
@@ -162,7 +162,7 @@ export function Closing() {
         {/* Back to top */}
         <a
           href="#top"
-          className="eyebrow mx-auto mt-20 inline-flex flex-col items-center gap-3 text-[0.6rem] text-[#6E7890] transition-colors duration-500 hover:text-[#102344]"
+          className="eyebrow mx-auto mt-20 inline-flex flex-col items-center gap-3 text-[0.6rem] text-[#6E7890] transition-colors duration-500 hover:text-[#C04080]"
         >
           <svg
             viewBox="0 0 24 24"

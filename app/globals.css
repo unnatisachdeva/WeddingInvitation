@@ -2,16 +2,16 @@
 @import "tailwindcss";
 
 /* ------------------------------------------------------------------ */
-/* Design tokens — Royal Navy, Champagne Beige & Gold                  */
+/* Design tokens — Hot Pink, Champagne Beige & Gold                    */
 /* ------------------------------------------------------------------ */
 
 @theme {
-  /* Royal navy palette */
-  --color-maroon-950: #0B1428;
-  --color-maroon-900: #101F3D;
-  --color-maroon-800: #172A49;
-  --color-maroon-700: #1C3155;
-  --color-maroon-600: #29436A;
+  /* Hot pink palette */
+  --color-maroon-950: #C04080;
+  --color-maroon-900: #B73D74;
+  --color-maroon-800: #D05A92;
+  --color-maroon-700: #D975A7;
+  --color-maroon-600: #E597BE;
 
   /* Ivory and beige palette */
   --color-ivory: #F8F1E5;
@@ -26,11 +26,11 @@
   --color-gold-600: #A98443;
   --color-gold-700: #80612F;
 
-  /* Neutral navy tones */
-  --color-brown-900: #101A2D;
-  --color-brown-800: #1B2940;
-  --color-brown-700: #344258;
-  --color-brown-500: #68758A;
+  /* Neutral pink-toned anchors */
+  --color-brown-900: #7A2958;
+  --color-brown-800: #9B3C6D;
+  --color-brown-700: #C35E8E;
+  --color-brown-500: #D896B5;
 
   /* Preserve Haldi event colours */
   --color-haldi: #C9962B;

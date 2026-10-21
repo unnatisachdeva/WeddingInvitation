@@ -96,29 +96,35 @@ export const wedding = {
   events: weddingEvents,
 
   families: {
+  title: "Our Families",
   eyebrow: "With love & blessings from",
-  title: "Our Family",
+  
   list: [
     {
       name: "The Punjani Family",
       members: [
-        {
-          role: "In Loving Memory",
-          names:
-            "In loving memory of our beloved grandparents, whose blessings, values, and love will forever remain a part of this family's journey.",
-        },
+        //{
+          //role: "In Loving Memory",
+          //names:
+            // "In loving memory of our beloved grandparents, whose blessings, values, and love will forever remain a part of this family's journey.",
+        //}
+        //}
         {
           role: "Grandparents",
-          names: "Smt. Raj Rani & Sh. Jay Dyal Punjani",
-        },  
+          names: "Late Smt. Raj Rani & Late Sh. Jay Dyal Punjani",
+        }, 
         {
-          role: "With Love and Blessings from Her Brothers",
+          role: "Parents",
+          names: "Mrs. Suman & Mr. Naresh Punjani",
+        },   
+        {
+          role: "Brothers",
           names: "Puneet & Harivansh Punjani",
         },
       ],
     },
   ],
-  note: "Awaiting the presence of our beloved family and friends",
+  note: "Seeking the blessings of our elders and awaiting the presence of our beloved family and friends.",
 },
 
   venue: {

@@ -18,7 +18,7 @@ export function EventCard({ event, venue, index }: EventCardProps) {
     <article
       {...reveal("up", index * 140)}
       aria-labelledby={`${event.id}-title`}
-      className="group relative mx-auto flex w-full max-w-[22rem] overflow-hidden rounded-[22px] bg-[linear-gradient(160deg,#1C3155_0%,#101F3D_55%,#0B1428_100%)] p-2.5 shadow-[0_28px_50px_-18px_rgba(5,15,35,0.45)] transition-[translate,box-shadow] duration-1000 ease-luxe hover:-translate-y-1.5 hover:shadow-[0_36px_60px_-18px_rgba(5,15,35,0.6)]"
+      className="group relative mx-auto flex w-full max-w-[22rem] overflow-hidden rounded-[22px] bg-[linear-gradient(160deg,#D86BA1_0%,#C04080_55%,#A93768_100%)] p-2.5 shadow-[0_28px_50px_-18px_rgba(87,23,55,0.42)] transition-[translate,box-shadow] duration-1000 ease-luxe hover:-translate-y-1.5 hover:shadow-[0_36px_60px_-18px_rgba(87,23,55,0.58)]"
     >
       {/* Subtle jaali texture */}
       <div className="pointer-events-none absolute inset-0 bg-jaali opacity-[0.07]" />

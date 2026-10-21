@@ -9,7 +9,7 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative isolate min-h-svh overflow-hidden bg-[#101F3D] text-white"
+      className="relative isolate min-h-svh overflow-hidden bg-[#C04080] text-white"
     >
       <Image
         src="/wed-hero.jpeg"
@@ -23,7 +23,7 @@ export function Hero() {
       {/* Dark overlay for legibility */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(11,20,40,0.45)_0%,rgba(11,20,40,0.18)_45%,rgba(11,20,40,0.62)_100%)]"
+        className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(192,64,128,0.48)_0%,rgba(192,64,128,0.18)_45%,rgba(192,64,128,0.68)_100%)]"
       />
 
       <div

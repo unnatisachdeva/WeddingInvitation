@@ -13,10 +13,10 @@ export function Celebrations() {
     <section
       id="celebrations"
       aria-labelledby="celebrations-title"
-      className="relative isolate overflow-hidden bg-[#0B1428] px-5 py-24 sm:py-32"
+      className="relative isolate overflow-hidden bg-[#C04080] px-5 py-24 sm:py-32"
     >
-      {/* Royal navy background */}
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,#1C3155_0%,#101F3D_48%,#0B1428_100%)]" />
+      {/* Hot pink background */}
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,#E28CB5_0%,#C04080_48%,#A93768_100%)]" />
 
       {/* Subtle gold pattern */}
       <div className="pointer-events-none absolute inset-0 -z-10 bg-jaali opacity-[0.08]" />
@@ -66,7 +66,7 @@ export function Celebrations() {
               >
                 {/* Timeline marker */}
                 <div className="relative z-10 col-start-1 row-start-1 flex justify-center sm:col-start-2">
-                  <span className="flex h-[15px] w-[15px] items-center justify-center rounded-full border border-[#D6B46A] bg-[#101F3D] shadow-[0_0_16px_rgba(214,180,106,0.2)]">
+                  <span className="flex h-[15px] w-[15px] items-center justify-center rounded-full border border-[#D6B46A] bg-[#A93768] shadow-[0_0_16px_rgba(214,180,106,0.2)]">
                     <span className="h-1.5 w-1.5 rounded-full bg-[#D6B46A]" />
                   </span>
                 </div>
@@ -169,7 +169,7 @@ export function Celebrations() {
         value={wedding.venue.mapsUrl}
         size={160}
         bgColor="#F5EBDD"
-        fgColor="#0B1428"
+        fgColor="#C04080"
         level="H"
         marginSize={2}
       />
