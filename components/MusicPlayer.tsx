@@ -69,7 +69,7 @@ export default function MusicPlayer() {
     <div className="fixed bottom-6 right-5 z-50">
       <audio
         ref={audioRef}
-        src="/wed-invite-song.mp3"
+        src="/bride-invite.mp3"
         loop
         autoPlay
         preload="auto"

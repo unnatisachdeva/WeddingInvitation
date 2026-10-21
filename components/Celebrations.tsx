@@ -97,17 +97,16 @@ export function Celebrations() {
                   
 
                   <div
-                    className={[
-                      "mt-4 flex items-center gap-3",
-                      "sm:justify-start",
-                      isLeft ? "sm:justify-end" : "sm:justify-start",
-                    ].join(" ")}
-                  >
-                    <span className="h-px w-7 bg-[#D6B46A]/60" />
-                    <span className="font-sans text-sm tracking-[0.18em] text-[#D6B46A]">
-                      {event.time}
-                    </span>
-                  </div>
+  className={[
+    "mt-4 flex items-center gap-3 justify-start",
+    isLeft ? "sm:flex-row-reverse sm:justify-start" : "sm:justify-start",
+  ].join(" ")}
+>
+  <span className="h-px w-7 bg-[#D6B46A]/60" />
+  <span className="font-sans text-sm tracking-[0.18em] text-[#D6B46A]">
+    {event.time}
+  </span>
+</div>
                 </div>
               </article>
             );

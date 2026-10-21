@@ -332,9 +332,12 @@ function HeartRevealCard({ date }: { date: string }) {
         if (t < 1) {
           raf = requestAnimationFrame(frame);
         } else {
+          // Scratch complete: blow the confetti right away
+          setCelebrating(true);
+
           // Fade away any leftover flecks of gold, then reveal
           const fadeOut = canvas.animate([{ opacity: 1 }, { opacity: 0 }], {
-            duration: 500,
+            duration: 300,
             easing: "ease-out",
             fill: "forwards",
           });
@@ -386,8 +389,6 @@ function HeartRevealCard({ date }: { date: string }) {
       ],
       { duration: 1000, easing: "cubic-bezier(.2,.8,.2,1)", fill: "forwards" }
     );
-
-    setCelebrating(true);
   }, [phase]);
 
   /* 4. Run the confetti burst from the heart's centre */
