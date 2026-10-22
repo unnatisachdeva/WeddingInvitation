@@ -8,6 +8,7 @@ import { RevealObserver } from "@/components/RevealObserver";
 import { SaveTheDate } from "@/components/SaveTheDate";
 import MusicPlayer from "@/components/MusicPlayer";
 import { Venue } from "@/components/Venue";
+import { ContactFooter } from "@/components/ContactFooter";
 
 
 export default function Home() {
@@ -26,6 +27,7 @@ export default function Home() {
 
         
       </main>
+      <ContactFooter />
       
      
       <RevealObserver />
